@@ -29,7 +29,7 @@ ndvector kmeans::learn(ndvector v, ndvector centroids, int max_it) {
 			int min_index = -1;		// index of the nearest centroid
 			double min_distance = std::numeric_limits<double>::infinity();
 			for (int j = 0; j < k; j++) {	// calculate the distance to each centroid
-				double distance = euclidean(v[i], centroids[j]);
+				double distance = func(v[i], centroids[j]);
 				if (distance < min_distance) {
 					min_index = j;
 					min_distance = distance;	
