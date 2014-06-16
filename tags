@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CPP	Makefile	/^CPP = g++$/;"	m
+CPPFLAGS	Makefile	/^CPPFLAGS = -g -Wall -std=c++11$/;"	m
+EXEC	Makefile	/^EXEC = run$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS = $/;"	m
+OBJ	Makefile	/^OBJ = $(SOURCES:.cpp=.o)$/;"	m
+Point	distance.h	/^typedef std::vector<double> Point;$/;"	t
+SOURCES	Makefile	/^SOURCES = $(wildcard *.cpp)$/;"	m
+d	kmeans.h	/^	int d;		\/\/ dimension of the points$/;"	m	class:kmeans
+distance_func	kmeans.h	/^typedef double (*distance_func)(vector<double>, vector<double>);$/;"	t
+euclidean	distance.cpp	/^double euclidean(Point v1, Point v2) {$/;"	f
+func	kmeans.h	/^ 	distance_func func;$/;"	m	class:kmeans
+is_converged	kmeans.h	/^	bool is_converged;$/;"	m	class:kmeans
+k	kmeans.h	/^	int k;		\/\/ number of cluster$/;"	m	class:kmeans
+kmeans	kmeans.cpp	/^kmeans::kmeans(distance_func func) {$/;"	f	class:kmeans
+kmeans	kmeans.h	/^class kmeans {$/;"	c
+learn	kmeans.cpp	/^ndvector kmeans::learn(ndvector v, ndvector centroids, int max_it) {$/;"	f	class:kmeans
+main	kmeans.cpp	/^int main(int argc, char **argv){$/;"	f
+n	kmeans.h	/^	int n;		\/\/ number of instances$/;"	m	class:kmeans
+ndvector	kmeans.h	/^typedef std::vector< vector<double> > ndvector;	$/;"	t
+~kmeans	kmeans.cpp	/^kmeans::~kmeans() {}$/;"	f	class:kmeans
