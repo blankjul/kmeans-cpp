@@ -1,8 +1,8 @@
 # Makefile
 
 CPP = g++
-CPPFLAGS = -g -Wall -std=c++11
-LDFLAGS = 
+CPPFLAGS = -g -Wall
+LDFLAGS = -lm
 EXEC = run
 
 SOURCES = $(wildcard src/*.cpp)
