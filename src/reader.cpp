@@ -23,10 +23,8 @@ ndvector CSVReader::read(string sFileName) {
         for(Tokenizer::iterator it = tok.begin(); it != tok.end(); ++it) {
             double d = atof(it->c_str());
             dLine.push_back(d);
-            cout << d << " ";
         }
-
-        cout << "\n----------------------" << endl;
+        v.push_back(dLine);
     }
 
     return v;
