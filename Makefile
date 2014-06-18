@@ -2,17 +2,17 @@
 
 CPP = g++
 CPPFLAGS = -g -Wall
-LDFLAGS = -lm
+LDFLAGS =
 EXEC = run
 
 SOURCES = $(wildcard src/*.cpp)
-OBJ = $(patsubst src/%.cpp,bin/%.o,$(SOURCES))
+OBJ = $(patsubst src/%.cpp,obj/%.o,$(SOURCES))
 
 # Compile the program.
 kmeans : $(OBJ)
-	$(CPP) $(CPPFLAGS) -o kmeans $(OBJ) $(LDFLAGS)
+	$(CPP) $(CPPFLAGS) -o bin/kmeans $(OBJ) $(LDFLAGS)
 
-bin/%.o: src/%.cpp
+obj/%.o: src/%.cpp
 	$(CPP) -c $(CPPFLAGS) $< -o $@
 
 # command to be executed.

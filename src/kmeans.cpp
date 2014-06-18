@@ -3,8 +3,12 @@
 #include <limits>
 #include <cmath>
 #include <algorithm>
+#include <fstream>
+#include <string>
+#include <boost/tokenizer.hpp>
+#include <tclap/CmdLine.h>
 #include "kmeans.h"
-
+#include "reader.h"
 
 
 using namespace std;
@@ -109,18 +113,42 @@ void kmeans::print() {
 
 
 int main(int argc, char **argv){
+    
 
-    double array[] = {{1,5},{6,2},{8,1},{3,5},{2,4},{2,6},{6,1},{6,8},{7,3},{7,6},{8,3},{8,7}};
-	ndvector v = vector<double>(&array[0],&array[0] + sizeof(array) / sizeof(double));
+    string sFileName;
+
+    try {  
+
+
+        TCLAP::CmdLine cmd("Command description message", ' ', "0.9");
+        
+        TCLAP::UnlabeledValueArg<string> cmdFile( "test","unlabeled test",true,"","csv file" );
+        cmd.add( cmdFile );
+
+        cmd.parse(argc, argv);
+
+        sFileName= cmdFile.getValue();
+
+    } catch (TCLAP::ArgException &e) { 
+        std::cerr << "error: " << e.error() << " for arg " << e.argId() << std::endl; 
+    }
+    
+    CSVReader r;
+    ndvector v = r.read(sFileName);
+    return 0;
+
+
+    //double array[] = {{1,5},{6,2},{8,1},{3,5},{2,4},{2,6},{6,1},{6,8},{7,3},{7,6},{8,3},{8,7}};
+	//ndvector v = vector<double>(&array[0],&array[0] + sizeof(array) / sizeof(double));
     //ndvector v = {{1},{3},{4},{5},{8},{10},{11},{12}};
-	ndvector centroids;
-    centroids = {{1,5},{6,2},{8,1}};
+	//ndvector centroids;
+    //centroids = {{1,5},{6,2},{8,1}};
     //ndvector centroids = {{1},{5}};
-	kmeans tmp(v, centroids);
+	//kmeans tmp(v, centroids);
 	
-	centroids = tmp.learn();       
+	//centroids = tmp.learn();       
 
-    tmp.print();
+    //tmp.print();
 }
 
 
