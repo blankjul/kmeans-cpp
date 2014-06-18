@@ -1,36 +1,63 @@
+#include <set>
 #include <iostream>
 #include <vector>
 #include <limits>
 #include <cmath>
 #include <algorithm>
-#include <fstream>
-#include <string>
-#include <boost/tokenizer.hpp>
-#include <tclap/CmdLine.h>
 #include "kmeans.h"
-#include "reader.h"
 
 
 using namespace std;
 
-kmeans::kmeans(ndvector v_, ndvector centroids, funcDistance func_, int iMaxIteration, int fuzzifier, bool bHardClustering ) {
-	func = func_;
+kmeans::kmeans(ndvector v_, int k) {
+	func = euclidean;
     v = v_;
-    M = centroids;
-    FUZZIFIER = fuzzifier;
-    HARD_CLUSTERING = bHardClustering;
-    MAX_ITERATION = iMaxIteration;
-
-	C = M.size();
+	C = k;
 	N = v.size();	
 	D = v[0].size();
         
+
+    FUZZIFIER = 3;
+    HARD_CLUSTERING = false;
+    MAX_ITERATION = 10;
+    
  
 }
+
 
 kmeans::~kmeans() {}
 
 
+ndvector kmeans::learn() {
+
+	int it = 0;
+
+    if (M.size() == 0) M = randomCentroids(C);
+	while (it++ < MAX_ITERATION) {
+		
+        calcPartitionMatrix();
+        M = calcMeanValues();
+
+	}
+	
+	return M;
+}
+
+ndvector kmeans::randomCentroids(int k) {
+    ndvector centroids;
+    set<int> indices;
+    while (indices.size() < k) {
+        srand(time(NULL));
+        int range = v.size() + 1;
+        int num = rand() % range;
+        indices.insert(num);
+    }
+    for (set<int>::iterator it = indices.begin(); it != indices.end(); ++it) {
+        centroids.push_back(v[*it]);
+        cout << *it << " ";
+    }       
+    return centroids;
+}
 
 void kmeans::calcPartitionMatrix() {
     // calculate the complete partition matrix U
@@ -76,22 +103,6 @@ ndvector kmeans::calcMeanValues() {
     return M;
 }
 
-
-ndvector kmeans::learn() {
-
-	int it = 0;
-
-	while (it++ < MAX_ITERATION) {
-		
-        calcPartitionMatrix();
-        M = calcMeanValues();
-
-	}
-	
-	return M;
-}
-
-
 void kmeans::print() {
     cout << "------------------  U  ----------------" << endl;
     for (int j = 0; j < N; j++) {	// for each point search for centroid
@@ -110,40 +121,4 @@ void kmeans::print() {
          cout << endl;
     }
 }
-
-
-int main(int argc, char **argv){
-    
-    string sFileName;
-    string sCentroidFile;
-
-    try {  
-        TCLAP::CmdLine cmd("Command description message", ' ', "0.9");
-        TCLAP::UnlabeledValueArg<string> cmdFile( "data","unlabeled test",true,"","csv file" );
-        TCLAP::UnlabeledValueArg<string> cmdCentroids( "centroids","",false,"","csv file centroids" );
-        cmd.add( cmdFile );
-        cmd.add( cmdCentroids );
-        cmd.parse(argc, argv);
-        sFileName= cmdFile.getValue();
-        sCentroidFile = cmdCentroids.getValue();
-
-    } catch (TCLAP::ArgException &e) { 
-        std::cerr << "error: " << e.error() << " for arg " << e.argId() << std::endl; 
-    }
-    
-
-    CSVReader r;
-    
-    ndvector v = r.read(sFileName);
-    ndvector centroids = r.read(sCentroidFile);
-
-    cout << v.size() << endl;
-    cout << centroids.size() << endl;
-    kmeans c =kmeans(v,centroids);
-    c.learn();
-    c.print();
-    return EXIT_SUCCESS;
-
-}
-
 
