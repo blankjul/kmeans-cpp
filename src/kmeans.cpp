@@ -9,19 +9,18 @@
 
 using namespace std;
 
-kmeans::kmeans(ndvector v_, int k) {
-	func = euclidean;
+kmeans::kmeans(ndvector v_, int k, ndvector centroids) {
+    func = euclidean;
     v = v_;
-	C = k;
-	N = v.size();	
-	D = v[0].size();
-        
+    C = k;
+    N = v.size();	
+    D = v[0].size();
+    iIteration = 0;
 
     FUZZIFIER = 3;
     HARD_CLUSTERING = false;
-    MAX_ITERATION = 10;
-    
- 
+    MAX_ITERATION = numeric_limits<int>::max();
+    M = (centroids.size() == 0) ? randomCentroids(C) : centroids;
 }
 
 
@@ -29,21 +28,18 @@ kmeans::~kmeans() {}
 
 
 ndvector kmeans::learn() {
-
-	int it = 0;
-
-    if (M.size() == 0) M = randomCentroids(C);
-	while (it++ < MAX_ITERATION) {
-		
-        calcPartitionMatrix();
-        M = calcMeanValues();
-
-	}
-	
-	return M;
+    bool bContinue = true;
+    while (bContinue) bContinue = next();
+    return M;
 }
 
-ndvector kmeans::randomCentroids(int k) {
+bool kmeans::next() {
+    calcPartitionMatrix();
+    M = calcMeanValues();
+    return iIteration++ < MAX_ITERATION;
+}
+
+ndvector kmeans::randomCentroids(unsigned int k) {
     ndvector centroids;
     set<int> indices;
     while (indices.size() < k) {
@@ -54,7 +50,6 @@ ndvector kmeans::randomCentroids(int k) {
     }
     for (set<int>::iterator it = indices.begin(); it != indices.end(); ++it) {
         centroids.push_back(v[*it]);
-        cout << *it << " ";
     }       
     return centroids;
 }
@@ -64,20 +59,20 @@ void kmeans::calcPartitionMatrix() {
     U = ndvector(C,vector<double>(N));
     double exp = 2 / (1-FUZZIFIER);
     for (int j = 0; j < N; j++) {	// for each point search for centroid
-    	vector<double> distances(C);
+        vector<double> distances(C);
         double denom = 0.0;
-    	for (int i = 0; i < C; i++) {	// calculate the distance to each centroid
+        for (int i = 0; i < C; i++) {	// calculate the distance to each centroid
             double fuzzy_distance = pow(func(v[j], M[i]),exp);
             denom += fuzzy_distance;
             distances[i] = fuzzy_distance;
-    	}                        
+        }                        
         if (HARD_CLUSTERING) {
             int ind = distance(distances.begin(),max_element(distances.begin(),distances.end()));
             U[ind][j] = 1;
         } else { for (int i = 0; i < C; i++) {
-                double tmp = distances[i];
-                U[i][j] = (!isinf(tmp)) ? distances[i] / denom : 1;
-            }
+            double tmp = distances[i];
+            U[i][j] = (!isinf(tmp)) ? distances[i] / denom : 1;
+        }
         }
     }
 }
@@ -97,28 +92,32 @@ ndvector kmeans::calcMeanValues() {
             sum_w += w;
         }
         for(int k = 0; k < D; ++k) {
-           M[i][k] /= sum_w;
+            M[i][k] /= sum_w;
         }
     }
     return M;
 }
 
-void kmeans::print() {
-    cout << "------------------  U  ----------------" << endl;
-    for (int j = 0; j < N; j++) {	// for each point search for centroid
-       	for (int i = 0; i < C; i++) {
-              cout << U[i][j]<< " " ;         
+void kmeans::print(bool bPartitionMatrix, bool bMeanVector) {
+    if (bPartitionMatrix && U.size() != 0) {
+        cout << "------------------  U  ----------------" << endl;
+        for (int j = 0; j < N; j++) {	// for each point search for centroid
+            for (int i = 0; i < C; i++) {
+                cout << U[i][j]<< " " ;         
+            }
+            cout << endl;
         }
         cout << endl;
     }
-    cout << endl;
 
-    cout << "------------------  M  ----------------" << endl;
-    for (int i = 0; i < C; ++i) {
-         for(int k = 0; k < D; ++k) {
-               cout << M[i][k] << "  ";
-         }
-         cout << endl;
+    if (bMeanVector) {
+        cout << "------------------  M  ----------------" << endl;
+        for (int i = 0; i < C; ++i) {
+            for(int k = 0; k < D; ++k) {
+                cout << M[i][k] << "  ";
+            }
+            cout << endl;
+        }
     }
 }
 

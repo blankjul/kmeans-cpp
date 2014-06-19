@@ -11,7 +11,7 @@ ndvector CSVReader::read(string sFileName) {
     ndvector v;
     ifstream in(sFileName.c_str());
     if (!in.is_open()) return v;
-    
+
     typedef boost::tokenizer< boost::escaped_list_separator<char> > Tokenizer;
     vector<string> vec;
     string line;

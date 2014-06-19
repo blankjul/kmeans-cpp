@@ -4,9 +4,9 @@
 typedef std::vector< std::vector<double> > ndvector;	
 
 class CSVReader {
-public:
+    public:
 
-    ndvector read(std::string sFileName);
+        ndvector read(std::string sFileName);
 
 };
 
