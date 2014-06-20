@@ -4,12 +4,93 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classkmeans_ab970eeea3d333d30299b0a1190c51d07}{{\bfseries kmeans} (distance\-\_\-func=euclidean)}\label{classkmeans_ab970eeea3d333d30299b0a1190c51d07}
-
+\hyperlink{classkmeans_ac2121c76e7ae447fd2648a28a58e5c52}{kmeans} (ndvector v, int k, ndvector centroids=ndvector())
 \item 
-\hypertarget{classkmeans_a02812b434b5a09cb14fa00e415586fdd}{ndvector {\bfseries learn} (ndvector, ndvector, int)}\label{classkmeans_a02812b434b5a09cb14fa00e415586fdd}
+ndvector \hyperlink{classkmeans_a25b13fed76549383111117db130b05da}{learn} ()
+\item 
+bool \hyperlink{classkmeans_a95382ac7e6e7bc8b730b82aab8fab9d4}{next} ()
+\item 
+\hypertarget{classkmeans_a0094f68b0cde338361ce1918b8e93563}{void {\bfseries print} (bool=true, bool=true)}\label{classkmeans_a0094f68b0cde338361ce1918b8e93563}
 
 \end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkmeans_acf1eb9ee509965ca584bfe9ff96c9cb7}{int \hyperlink{classkmeans_acf1eb9ee509965ca584bfe9ff96c9cb7}{i\-Fuzzifier}}\label{classkmeans_acf1eb9ee509965ca584bfe9ff96c9cb7}
+
+\begin{DoxyCompactList}\small\item\em fuzzifier the determine the fuzzy \char`\"{}softness\char`\"{} \end{DoxyCompactList}\item 
+\hypertarget{classkmeans_a68624c205cc23a9337deceae11990427}{int \hyperlink{classkmeans_a68624c205cc23a9337deceae11990427}{i\-Max\-Iteration}}\label{classkmeans_a68624c205cc23a9337deceae11990427}
+
+\begin{DoxyCompactList}\small\item\em maximal iterations without converging \end{DoxyCompactList}\item 
+\hypertarget{classkmeans_ad68768a1c645e9acdf4e39322ac0a987}{bool \hyperlink{classkmeans_ad68768a1c645e9acdf4e39322ac0a987}{b\-Hard\-Clustering}}\label{classkmeans_ad68768a1c645e9acdf4e39322ac0a987}
+
+\begin{DoxyCompactList}\small\item\em really k-\/means or fuzzy version \end{DoxyCompactList}\item 
+\hypertarget{classkmeans_a1fc722c0a48af163fdcb9f79ebf8ff5c}{func\-Distance \hyperlink{classkmeans_a1fc722c0a48af163fdcb9f79ebf8ff5c}{func}}\label{classkmeans_a1fc722c0a48af163fdcb9f79ebf8ff5c}
+
+\begin{DoxyCompactList}\small\item\em distance function \end{DoxyCompactList}\item 
+\hypertarget{classkmeans_a638c89975e51f194f53d324fdc7fce79}{ndvector \hyperlink{classkmeans_a638c89975e51f194f53d324fdc7fce79}{M}}\label{classkmeans_a638c89975e51f194f53d324fdc7fce79}
+
+\begin{DoxyCompactList}\small\item\em mean matrix with current centroids \end{DoxyCompactList}\item 
+\hypertarget{classkmeans_af54543a70492f500179c5eb3c0334494}{double \hyperlink{classkmeans_af54543a70492f500179c5eb3c0334494}{d\-Target\-Value}}\label{classkmeans_af54543a70492f500179c5eb3c0334494}
+
+\begin{DoxyCompactList}\small\item\em current target value of the performance function \end{DoxyCompactList}\item 
+\hypertarget{classkmeans_ab80d60a31ad99d9b521933be8ae799b3}{int \hyperlink{classkmeans_ab80d60a31ad99d9b521933be8ae799b3}{i\-Iteration}}\label{classkmeans_ab80d60a31ad99d9b521933be8ae799b3}
+
+\begin{DoxyCompactList}\small\item\em counter for the current iteration \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmeans_ac2121c76e7ae447fd2648a28a58e5c52}{\index{kmeans@{kmeans}!kmeans@{kmeans}}
+\index{kmeans@{kmeans}!kmeans@{kmeans}}
+\subsubsection[{kmeans}]{\setlength{\rightskip}{0pt plus 5cm}kmeans\-::kmeans (
+\begin{DoxyParamCaption}
+\item[{ndvector}]{v, }
+\item[{int}]{k, }
+\item[{ndvector}]{centroids = {\ttfamily ndvector()}}
+\end{DoxyParamCaption}
+)}}\label{classkmeans_ac2121c76e7ae447fd2648a28a58e5c52}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & data vector with all the data points \\
+\hline
+{\em k} & number of cluster that should be found \\
+\hline
+{\em centroids} & given centroids that should be used at the beginning \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmeans_a25b13fed76549383111117db130b05da}{\index{kmeans@{kmeans}!learn@{learn}}
+\index{learn@{learn}!kmeans@{kmeans}}
+\subsubsection[{learn}]{\setlength{\rightskip}{0pt plus 5cm}ndvector kmeans\-::learn (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classkmeans_a25b13fed76549383111117db130b05da}
+Search for the best k-\/\-Cluster. That means minimize all distances from the cluster to each of the points.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em ndvector} & multidimensional vector with the cluster centers. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classkmeans_a95382ac7e6e7bc8b730b82aab8fab9d4}{\index{kmeans@{kmeans}!next@{next}}
+\index{next@{next}!kmeans@{kmeans}}
+\subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}bool kmeans\-::next (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classkmeans_a95382ac7e6e7bc8b730b82aab8fab9d4}
+This function does only process one iteration. That could be useful to visualize the current data set included the means or to have an interactive output.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & if M\-A\-X\-\_\-\-I\-T\-E\-R\-A\-T\-I\-O\-N is reached or it has converged. \\
+\hline
+{\em false} & M\-A\-X\-\_\-\-I\-T\-E\-R\-A\-T\-I\-O\-N not reached and not converged. \\
+\hline
+\end{DoxyRetVals}
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

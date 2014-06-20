@@ -11,15 +11,17 @@ using namespace std;
 
 kmeans::kmeans(ndvector v_, int k, ndvector centroids) {
     func = euclidean;
-    v = v_;
+    X = v_;
     C = k;
-    N = v.size();	
-    D = v[0].size();
-    iIteration = 0;
+    N = X.size();	
+    D = X[0].size();
 
-    FUZZIFIER = 3;
-    HARD_CLUSTERING = false;
-    MAX_ITERATION = numeric_limits<int>::max();
+    iIteration = 0;
+    epsilon = 1e-5;
+    iFuzzifier = 2;
+    bHardClustering = false;
+    iMaxIteration = numeric_limits<int>::max();
+
     M = (centroids.size() == 0) ? randomCentroids(C) : centroids;
 }
 
@@ -35,59 +37,56 @@ ndvector kmeans::learn() {
 
 bool kmeans::next() {
     calcPartitionMatrix();
-    M = calcMeanValues();
-    return iIteration++ < MAX_ITERATION;
+    double dTargetValue_ = calcMeanValues();
+    bool bContinue = iIteration++ < iMaxIteration \
+                     and fabs(dTargetValue_ -  dTargetValue) >= epsilon;
+    dTargetValue = dTargetValue_;
+    return bContinue;
 }
 
 ndvector kmeans::randomCentroids(unsigned int k) {
-    ndvector centroids;
-    set<int> indices;
-    while (indices.size() < k) {
-        srand(time(NULL));
-        int range = v.size() + 1;
-        int num = rand() % range;
-        indices.insert(num);
-    }
-    for (set<int>::iterator it = indices.begin(); it != indices.end(); ++it) {
-        centroids.push_back(v[*it]);
-    }       
-    return centroids;
+    ndvector centroids = X;
+    random_shuffle(centroids.begin(),centroids.end());
+    return ndvector(centroids.begin(), centroids.begin() + C);
 }
 
 void kmeans::calcPartitionMatrix() {
     // calculate the complete partition matrix U
     U = ndvector(C,vector<double>(N));
-    double exp = 2 / (1-FUZZIFIER);
+    double exp = 2 / (1-iFuzzifier);
     for (int j = 0; j < N; j++) {	// for each point search for centroid
         vector<double> distances(C);
         double denom = 0.0;
         for (int i = 0; i < C; i++) {	// calculate the distance to each centroid
-            double fuzzy_distance = pow(func(v[j], M[i]),exp);
+            double fuzzy_distance = pow(func(X[j], M[i]),exp);
             denom += fuzzy_distance;
             distances[i] = fuzzy_distance;
         }                        
-        if (HARD_CLUSTERING) {
+        if (bHardClustering) {
             int ind = distance(distances.begin(),max_element(distances.begin(),distances.end()));
             U[ind][j] = 1;
-        } else { for (int i = 0; i < C; i++) {
-            double tmp = distances[i];
-            U[i][j] = (!isinf(tmp)) ? distances[i] / denom : 1;
-        }
+        } else {
+            for (int i = 0; i < C; i++) {
+                double tmp = distances[i];
+                U[i][j] = (!isinf(tmp)) ? distances[i] / denom : 1;
+            }
         }
     }
 }
 
 
 
-ndvector kmeans::calcMeanValues() {
+double kmeans::calcMeanValues() {
     // calculate the new mean vector using U and X
-    ndvector M = ndvector(C,vector<double>(D));
+    M = ndvector(C,vector<double>(D));
+    double dTargetValue_ = 0.0;
     for (int i = 0; i < C; ++i) {
         double sum_w = 0.0;
         for (int j = 0; j < N; ++j) {
-            double w = (U[i][j] != 0) ? pow(U[i][j],FUZZIFIER) : 0;
+            double w = (U[i][j] != 0) ? pow(U[i][j],iFuzzifier) : 0;
             for(int k = 0; k < D; ++k) {
-                M[i][k] += v[j][k] * w;    
+                M[i][k] += X[j][k] * w;    
+                dTargetValue_ += fabs(X[j][k] - M[i][k]);
             }
             sum_w += w;
         }
@@ -95,11 +94,13 @@ ndvector kmeans::calcMeanValues() {
             M[i][k] /= sum_w;
         }
     }
-    return M;
+    return dTargetValue_;
 }
 
-void kmeans::print(bool bPartitionMatrix, bool bMeanVector) {
-    if (bPartitionMatrix && U.size() != 0) {
+
+void kmeans::printPartitionMatrix() {
+
+    if (U.size() != 0) {
         cout << "------------------  U  ----------------" << endl;
         for (int j = 0; j < N; j++) {	// for each point search for centroid
             for (int i = 0; i < C; i++) {
@@ -110,14 +111,16 @@ void kmeans::print(bool bPartitionMatrix, bool bMeanVector) {
         cout << endl;
     }
 
-    if (bMeanVector) {
-        cout << "------------------  M  ----------------" << endl;
-        for (int i = 0; i < C; ++i) {
-            for(int k = 0; k < D; ++k) {
-                cout << M[i][k] << "  ";
-            }
-            cout << endl;
+
+}
+void kmeans::printMeans() {
+
+    cout << "------------------  M  ----------------" << endl;
+    for (int i = 0; i < C; ++i) {
+        for(int k = 0; k < D; ++k) {
+            cout << M[i][k] << "  ";
         }
+        cout << endl;
     }
 }
 

@@ -67,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,25 +91,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using namespace </span>std;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">typedef</span> std::vector&lt; vector&lt;double&gt; &gt; ndvector; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">typedef</span> double (*distance_func)(vector&lt;double&gt;, vector&lt;double&gt;);</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">typedef</span> double (*funcDistance)(vector&lt;double&gt;, vector&lt;double&gt;);</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno"><a class="code" href="classkmeans.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classkmeans.html">kmeans</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="classkmeans.html">kmeans</a>( distance_func=euclidean);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    ~<a class="code" href="classkmeans.html">kmeans</a>();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    ndvector learn(ndvector, ndvector, <span class="keywordtype">int</span>);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> k;      <span class="comment">// number of cluster</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">int</span> n;      <span class="comment">// number of instances</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">int</span> d;      <span class="comment">// dimension of the points</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">bool</span> is_converged;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    distance_func func;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="classkmeans.html">kmeans</a>(ndvector v,<span class="keywordtype">int</span> k,ndvector centroids =ndvector());</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        ~<a class="code" href="classkmeans.html">kmeans</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        ndvector learn();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">bool</span> next();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">void</span> print(<span class="keywordtype">bool</span>=<span class="keyword">true</span>,<span class="keywordtype">bool</span>=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classkmeans.html#acf1eb9ee509965ca584bfe9ff96c9cb7">   43</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classkmeans.html#acf1eb9ee509965ca584bfe9ff96c9cb7" title="fuzzifier the determine the fuzzy &quot;softness&quot; ">iFuzzifier</a>;                      </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classkmeans.html#a68624c205cc23a9337deceae11990427">   44</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classkmeans.html#a68624c205cc23a9337deceae11990427" title="maximal iterations without converging ">iMaxIteration</a>;                   </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classkmeans.html#ad68768a1c645e9acdf4e39322ac0a987">   45</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classkmeans.html#ad68768a1c645e9acdf4e39322ac0a987" title="really k-means or fuzzy version ">bHardClustering</a>;                </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="classkmeans.html#a1fc722c0a48af163fdcb9f79ebf8ff5c">   46</a></span>&#160;        funcDistance <a class="code" href="classkmeans.html#a1fc722c0a48af163fdcb9f79ebf8ff5c" title="distance function ">func</a>;                   </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classkmeans.html#a638c89975e51f194f53d324fdc7fce79">   47</a></span>&#160;        ndvector <a class="code" href="classkmeans.html#a638c89975e51f194f53d324fdc7fce79" title="mean matrix with current centroids ">M</a>;                          </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="classkmeans.html#af54543a70492f500179c5eb3c0334494">   48</a></span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classkmeans.html#af54543a70492f500179c5eb3c0334494" title="current target value of the performance function ">dTargetValue</a>;                 </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="classkmeans.html#ab80d60a31ad99d9b521933be8ae799b3">   50</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classkmeans.html#ab80d60a31ad99d9b521933be8ae799b3" title="counter for the current iteration ">iIteration</a>;                      </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">int</span> C;                               </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">int</span> N;                               </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">int</span> D;                               </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        ndvector U;                          </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        ndvector X;                          </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        ndvector randomCentroids(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> k);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">double</span> calcMeanValues();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> calcPartitionMatrix();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 16 2014 12:21:21 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 19 2014 10:46:32 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

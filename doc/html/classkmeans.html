@@ -61,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classkmeans-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">kmeans Class Reference</div>  </div>
@@ -89,13 +91,134 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab970eeea3d333d30299b0a1190c51d07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab970eeea3d333d30299b0a1190c51d07"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>kmeans</b> (distance_func=euclidean)</td></tr>
-<tr class="separator:ab970eeea3d333d30299b0a1190c51d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02812b434b5a09cb14fa00e415586fdd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02812b434b5a09cb14fa00e415586fdd"></a>
-ndvector&#160;</td><td class="memItemRight" valign="bottom"><b>learn</b> (ndvector, ndvector, int)</td></tr>
-<tr class="separator:a02812b434b5a09cb14fa00e415586fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2121c76e7ae447fd2648a28a58e5c52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#ac2121c76e7ae447fd2648a28a58e5c52">kmeans</a> (ndvector v, int k, ndvector centroids=ndvector())</td></tr>
+<tr class="separator:ac2121c76e7ae447fd2648a28a58e5c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25b13fed76549383111117db130b05da"><td class="memItemLeft" align="right" valign="top">ndvector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#a25b13fed76549383111117db130b05da">learn</a> ()</td></tr>
+<tr class="separator:a25b13fed76549383111117db130b05da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95382ac7e6e7bc8b730b82aab8fab9d4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#a95382ac7e6e7bc8b730b82aab8fab9d4">next</a> ()</td></tr>
+<tr class="separator:a95382ac7e6e7bc8b730b82aab8fab9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0094f68b0cde338361ce1918b8e93563"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0094f68b0cde338361ce1918b8e93563"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (bool=true, bool=true)</td></tr>
+<tr class="separator:a0094f68b0cde338361ce1918b8e93563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:acf1eb9ee509965ca584bfe9ff96c9cb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf1eb9ee509965ca584bfe9ff96c9cb7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#acf1eb9ee509965ca584bfe9ff96c9cb7">iFuzzifier</a></td></tr>
+<tr class="memdesc:acf1eb9ee509965ca584bfe9ff96c9cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">fuzzifier the determine the fuzzy "softness" <br/></td></tr>
+<tr class="separator:acf1eb9ee509965ca584bfe9ff96c9cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68624c205cc23a9337deceae11990427"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68624c205cc23a9337deceae11990427"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#a68624c205cc23a9337deceae11990427">iMaxIteration</a></td></tr>
+<tr class="memdesc:a68624c205cc23a9337deceae11990427"><td class="mdescLeft">&#160;</td><td class="mdescRight">maximal iterations without converging <br/></td></tr>
+<tr class="separator:a68624c205cc23a9337deceae11990427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68768a1c645e9acdf4e39322ac0a987"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad68768a1c645e9acdf4e39322ac0a987"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#ad68768a1c645e9acdf4e39322ac0a987">bHardClustering</a></td></tr>
+<tr class="memdesc:ad68768a1c645e9acdf4e39322ac0a987"><td class="mdescLeft">&#160;</td><td class="mdescRight">really k-means or fuzzy version <br/></td></tr>
+<tr class="separator:ad68768a1c645e9acdf4e39322ac0a987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fc722c0a48af163fdcb9f79ebf8ff5c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fc722c0a48af163fdcb9f79ebf8ff5c"></a>
+funcDistance&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#a1fc722c0a48af163fdcb9f79ebf8ff5c">func</a></td></tr>
+<tr class="memdesc:a1fc722c0a48af163fdcb9f79ebf8ff5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">distance function <br/></td></tr>
+<tr class="separator:a1fc722c0a48af163fdcb9f79ebf8ff5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a638c89975e51f194f53d324fdc7fce79"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a638c89975e51f194f53d324fdc7fce79"></a>
+ndvector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#a638c89975e51f194f53d324fdc7fce79">M</a></td></tr>
+<tr class="memdesc:a638c89975e51f194f53d324fdc7fce79"><td class="mdescLeft">&#160;</td><td class="mdescRight">mean matrix with current centroids <br/></td></tr>
+<tr class="separator:a638c89975e51f194f53d324fdc7fce79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af54543a70492f500179c5eb3c0334494"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af54543a70492f500179c5eb3c0334494"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#af54543a70492f500179c5eb3c0334494">dTargetValue</a></td></tr>
+<tr class="memdesc:af54543a70492f500179c5eb3c0334494"><td class="mdescLeft">&#160;</td><td class="mdescRight">current target value of the performance function <br/></td></tr>
+<tr class="separator:af54543a70492f500179c5eb3c0334494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab80d60a31ad99d9b521933be8ae799b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab80d60a31ad99d9b521933be8ae799b3"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkmeans.html#ab80d60a31ad99d9b521933be8ae799b3">iIteration</a></td></tr>
+<tr class="memdesc:ab80d60a31ad99d9b521933be8ae799b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">counter for the current iteration <br/></td></tr>
+<tr class="separator:ab80d60a31ad99d9b521933be8ae799b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac2121c76e7ae447fd2648a28a58e5c52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kmeans::kmeans </td>
+          <td>(</td>
+          <td class="paramtype">ndvector&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ndvector&#160;</td>
+          <td class="paramname"><em>centroids</em> = <code>ndvector()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>data vector with all the data points </td></tr>
+    <tr><td class="paramname">k</td><td>number of cluster that should be found </td></tr>
+    <tr><td class="paramname">centroids</td><td>given centroids that should be used at the beginning </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a25b13fed76549383111117db130b05da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ndvector kmeans::learn </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Search for the best k-Cluster. That means minimize all distances from the cluster to each of the points.</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">ndvector</td><td>multidimensional vector with the cluster centers. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a95382ac7e6e7bc8b730b82aab8fab9d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kmeans::next </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function does only process one iteration. That could be useful to visualize the current data set included the means or to have an interactive output.</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>if MAX_ITERATION is reached or it has converged. </td></tr>
+    <tr><td class="paramname">false</td><td>MAX_ITERATION not reached and not converged. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/julesy/workspace/cpp_machine_learning/src/<a class="el" href="kmeans_8h_source.html">kmeans.h</a></li>
 <li>/home/julesy/workspace/cpp_machine_learning/src/kmeans.cpp</li>
@@ -103,7 +226,7 @@ ndvector&#160;</td><td class="memItemRight" valign="bottom"><b>learn</b> (ndvect
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 16 2014 12:21:21 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 19 2014 10:46:32 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

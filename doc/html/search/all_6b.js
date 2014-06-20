@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kmeans',['kmeans',['../classkmeans.html',1,'']]]
+  ['kmeans',['kmeans',['../classkmeans.html',1,'kmeans'],['../classkmeans.html#ac2121c76e7ae447fd2648a28a58e5c52',1,'kmeans::kmeans()']]]
 ];

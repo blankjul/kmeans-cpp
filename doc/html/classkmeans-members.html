@@ -61,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,13 +87,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classkmeans.html">kmeans</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>kmeans</b>(distance_func=euclidean) (defined in <a class="el" href="classkmeans.html">kmeans</a>)</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>learn</b>(ndvector, ndvector, int) (defined in <a class="el" href="classkmeans.html">kmeans</a>)</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~kmeans</b>() (defined in <a class="el" href="classkmeans.html">kmeans</a>)</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classkmeans.html#ad68768a1c645e9acdf4e39322ac0a987">bHardClustering</a></td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classkmeans.html#af54543a70492f500179c5eb3c0334494">dTargetValue</a></td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classkmeans.html#a1fc722c0a48af163fdcb9f79ebf8ff5c">func</a></td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classkmeans.html#acf1eb9ee509965ca584bfe9ff96c9cb7">iFuzzifier</a></td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classkmeans.html#ab80d60a31ad99d9b521933be8ae799b3">iIteration</a></td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classkmeans.html#a68624c205cc23a9337deceae11990427">iMaxIteration</a></td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classkmeans.html#ac2121c76e7ae447fd2648a28a58e5c52">kmeans</a>(ndvector v, int k, ndvector centroids=ndvector())</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classkmeans.html#a25b13fed76549383111117db130b05da">learn</a>()</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classkmeans.html#a638c89975e51f194f53d324fdc7fce79">M</a></td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classkmeans.html#a95382ac7e6e7bc8b730b82aab8fab9d4">next</a>()</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>print</b>(bool=true, bool=true) (defined in <a class="el" href="classkmeans.html">kmeans</a>)</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~kmeans</b>() (defined in <a class="el" href="classkmeans.html">kmeans</a>)</td><td class="entry"><a class="el" href="classkmeans.html">kmeans</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 16 2014 12:21:21 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 19 2014 10:46:32 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>
